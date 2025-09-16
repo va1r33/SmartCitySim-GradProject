@@ -2,7 +2,7 @@
 An AI-powered sustainable city simulation game.
 
 ## Developer
-Your Name (Computer Science & Game Development Major)
+Valerie Tan Ying Ying (Computer Science & Game Development Major)
 
 ## Project Goal
 Build a city-builder simulation game (Unity) with backend data simulation (Django/ML) to explore sustainability and smart city planning.

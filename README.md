@@ -2,7 +2,7 @@
 An AI-powered sustainable city simulation game that explores the impact of urban planning and IoT-driven citizen behavior on real-time sustainability metrics.
 
 ## Developer
-Valerie Tan Ying Ying (Computer Science & Game Development Major)
+Valerie Tan Ying Ying (Capstone Project)
 
 ## Project Goal
 Build a city-builder simulation game (Unity) with backend data simulation (Django/ML) to explore sustainability and smart city planning.

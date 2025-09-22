@@ -2,17 +2,18 @@
 An AI-powered sustainable city simulation game that explores the impact of urban planning and IoT-driven citizen behavior on real-time sustainability metrics.
 
 ## Developer
-Valerie Tan Ying Ying (Capstone Project)
+Valerie Tan Ying Ying 
 
 ## Project Goal
-Build a city-builder simulation game (Unity) with backend data simulation (Django/ML) to explore sustainability and smart city planning.
+Build an AI-powered serious game that merges Sims-inspired city-building with real-time sustainability analytics. Players act as urban planners making choices that impact traffic flow, CO₂ emissions, energy use, and citizen happiness, with a unique SmartThings IoT simulation layer.
 
 ## Tech Stack
-- Unity (frontend game simulation)
-- Python Django (backend API + ML)
-- PostgreSQL + PostGIS (database)
-- Redis (caching)
-- Docker (deployment)
+- **Frontend:** Unity (C#) with Tilemap system for city building
+- **Backend:** Python Flask with REST API + Machine Learning models
+- **Database:** PostgreSQL + PostGIS (spatial data), Redis (caching)
+- **Simulation:** Predictive ML models for traffic, energy, and emissions
+- **Deployment:** Docker, AWS
+- **IoT Integration:** SmartThings-inspired simulated API
 
 ## Current Status: Phase 1 - Backend Operational
 

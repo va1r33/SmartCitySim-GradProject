@@ -1,5 +1,5 @@
 # SmartCitySim-GradProject
-An AI-powered sustainable city simulation game.
+An AI-powered sustainable city simulation game that explores the impact of urban planning and IoT-driven citizen behavior on real-time sustainability metrics.
 
 ## Developer
 Valerie Tan Ying Ying (Computer Science & Game Development Major)
@@ -14,14 +14,23 @@ Build a city-builder simulation game (Unity) with backend data simulation (Djang
 - Redis (caching)
 - Docker (deployment)
 
+## Current Status: Phase 1 - Backend Operational
+
+**The simulation backend server is now live and operational.**
+- **Framework:** Flask
+- **Core Endpoint:** `POST /api/simulate`
+- **Function:** Accepts city layout JSON and returns simulated metrics (traffic, energy, CO₂, happiness).
+- **Status:** Successfully communicates with test clients.
+
 ## Project Structure
 SmartCitySim-GradProject/
-├── unity-client/ # Unity city-builder front-end
-├── backend-api/ # Django REST backend
-├── docs/ # Design doc, diagrams
+├── Backend/ # Live Flask API server (OPERATIONAL)
+├── Design-Docs/ # Project specifications & planning
+├── Documentation/ # Technical documentation
+└── UnityFrontend/ # Unity client (In Progress)
 ├── datasets/ # Traffic & emissions data
 └── README.md
 
 ## Schedule
 Weekly commits, professor review every Monday.
-Trello board: [Insert Link Here]
+Trello board: [[[Insert Link Here]](https://trello.com/b/WGAZjQDZ/mytrelloboard)]

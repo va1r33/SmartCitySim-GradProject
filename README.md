@@ -24,11 +24,17 @@ Build a city-builder simulation game (Unity) with backend data simulation (Djang
 
 ## Project Structure
 SmartCitySim-GradProject/
+
 ├── Backend/ # Live Flask API server (OPERATIONAL)
+
 ├── Design-Docs/ # Project specifications & planning
+
 ├── Documentation/ # Technical documentation
+
 └── UnityFrontend/ # Unity client (In Progress)
+
 ├── datasets/ # Traffic & emissions data
+
 └── README.md
 
 ## Schedule

@@ -3,8 +3,8 @@ from flask_cors import CORS
 
 app = Flask(__name__)
 
-# CORS configuration that DEFINITELY works
-CORS(app)  # Simple and effective
+# CORS configuration 
+CORS(app)  
 
 @app.route('/api/simulate', methods=['POST'])
 def simulate():

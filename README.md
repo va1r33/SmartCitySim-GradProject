@@ -40,4 +40,4 @@ SmartCitySim-GradProject/
 
 ## Schedule
 Weekly commits, professor review every Monday.
-Trello board: [[[Insert Link Here]](https://trello.com/b/WGAZjQDZ/mytrelloboard)]
+Trello board: [[[Insert Link Here]](https://trello.com/b/iwRf2Z9w/smartcitysim-main-development-board)]

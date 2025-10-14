@@ -15,27 +15,58 @@ Build an AI-powered serious game that merges Sims-inspired city-building with re
 - **Deployment:** Docker, AWS
 - **IoT Integration:** SmartThings-inspired simulated API
 
-## Current Status: Phase 1 - Backend Operational
+## Current Status: Phase 4 - Full MVP Achieved
 
-**The simulation backend server is now live and operational.**
-- **Framework:** Flask
-- **Core Endpoint:** `POST /api/simulate`
-- **Function:** Accepts city layout JSON and returns simulated metrics (traffic, energy, CO₂, happiness).
-- **Status:** Successfully communicates with test clients.
+**The complete simulation game is now operational with all core systems integrated.**
+- **Key Achievements:** 
+- **Backend Brain:** Flask API with dynamic /api/simulate endpoint
+- **Unity Frontend:** Fully playable 2D city builder (tilemap system)
+- **Building Placement:** Click-to-place/remove buildings
+- **Live Dashboard:** Traffic / CO₂ / Energy metrics update in real-time
+- **Visual Feedback:** City color + fog react to environmental metrics
+- **SmartThings UI:**  IoT controls (Eco Mode, Traffic Control, Alerts)
+- **Agent System:**  Animated cars & citizens moving dynamically
+
+## Development Journey
+- **Weeks 1-2 Foundation:**
+ Backend API - Flask server with simulation logic
+ Unity Foundation - Scene, camera, lighting, UI
+ City Grid System - Scripted city generation
+ API Integration - Real-time Unity ↔ Flask communication
+ UI Dashboard - Live sustainability metrics display
+ Interactive Controls - Simulation button
+ Asset Pipeline - Tiles, sprites, proper assignments
+
+- **Week 3 Transformation - Playable Game Achieved:**
+ Building Placement System - Click to add/remove buildings
+ Real-Time Visual Feedback - Colors change based on metrics
+ Simple Agents - Cars/citizens as moving dots
+ SmartThings Simulation UI - IoT control panel implemented
+
+## Phase Breakdown
+**PHASE 1 — Building Placement System (Core Gameplay)**
+ Objective: Let players click a button → click a tile → place building tiles
+ Status: Fully implemented with residential, commercial, industrial zones
+
+**PHASE 2 — Real-Time Visual Feedback (Dynamic Environment)**
+ Objective: City visually changes colors based on simulation metrics
+ Status: Traffic levels trigger color changes, CO₂ levels affect fog/haze
+
+**PHASE 3 — Simple Agents (Cars / Citizens)**
+ Objective: Show small agents moving randomly through the city
+ Status: Animated cars and citizens dynamically navigate city streets
+
+**PHASE 4 — SmartThings Simulation UI**
+ Objective: Interactive IoT controls that affect simulation
+ Status: Eco Mode, Traffic Control, and Alert systems fully operational
 
 ## Project Structure
 SmartCitySim-GradProject/
-
-├── Backend/ # Live Flask API server (OPERATIONAL)
-
-├── Design-Docs/ # Project specifications & planning
-
-├── Documentation/ # Technical documentation
-
-└── UnityFrontend/ # Unity client (In Progress)
-
-├── datasets/ # Traffic & emissions data
-
+├── Backend/                 # Live Flask API server (OPERATIONAL)
+├── Design-Docs/            # Project specifications & planning
+├── Documentation/          # Technical documentation
+└── UnityFrontend/          # Unity client (FULLY PLAYABLE)
+├── datasets/               # Traffic & emissions data
 └── README.md
 
 ## Schedule

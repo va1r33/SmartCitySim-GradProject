@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 38ac77f424bcc408ab4db94883b01d6b
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - grassTile: {fileID: 11400000, guid: 1af07de307d714250a42ccda38715eb8, type: 2}
+  - roadTile: {fileID: 11400000, guid: 69aef5585388a475897e3cde64cbd4a1, type: 2}
+  - residentialTile: {fileID: 11400000, guid: c22381d624e5043da9550eef0c153798, type: 2}
+  - commercialTile: {fileID: 11400000, guid: e8390d68f403b45a78cc8fc12a4fd6f1, type: 2}
+  - industrialTile: {fileID: 11400000, guid: b786589af79c444bcbd3f8e188e3d669, type: 2}
+  - parkTile: {fileID: 11400000, guid: b427cfe3afea64213944b0e25fdde5b3, type: 2}
+  - selectedBuildingType: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

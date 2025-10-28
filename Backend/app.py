@@ -2,7 +2,7 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app)  # allow Unity localhost calls
+CORS(app)
 
 @app.route('/api/simulate', methods=['POST'])
 def simulate():
@@ -11,47 +11,62 @@ def simulate():
         print("Received from client:", data)
 
         buildings = data.get('buildings', [])
-        smartthings_mode = data.get('smartthings_mode', '')
+        smart_mode = data.get('smartthings_mode', '')
 
-        # Count buildings
-        residential = sum(b.get('count', 0) for b in buildings if b.get('type') == 'residential')
-        commercial  = sum(b.get('count', 0) for b in buildings if b.get('type') == 'commercial')
-        industrial  = sum(b.get('count', 0) for b in buildings if b.get('type') == 'industrial')
-        total = residential + commercial + industrial
+        # Count building types
+        r = c = i = 0
+        for b in buildings:
+            t = b.get('type', '')
+            cnt = int(b.get('count', 0))
+            if t == 'residential': r += cnt
+            elif t == 'commercial': c += cnt
+            elif t == 'industrial': i += cnt
 
-        # Base metrics (instant recalculation per request)
+        total = r + c + i
+
+        # ---- Dynamic metrics (instant recalculation) ----
         if total == 0:
-            traffic = 25
-            co2 = 20
-            energy = 30
+            traffic = 10.0
+            co2 = 20.0
+            energy = 25.0
         else:
-            # Simple, explainable formulas tied to composition
-            traffic = min(95, 30 + (commercial * 3) + (industrial * 5))
-            co2     = min(90, 20 + (industrial * 8) + (commercial * 3))
-            energy  = min(85, 25 + (residential * 2) + (commercial * 4) + (industrial * 10))
+            # Balanced but punitive for industrial, moderate for commercial
+            traffic = min(100.0, 20.0 + c * 2.0 + i * 3.0)
+            co2     = min(100.0, 15.0 + i * 7.0 + c * 2.0)
+            energy  = min(120.0, 20.0 + r * 2.0 + c * 3.0 + i * 5.0)
 
-        # SmartThings policy effects (instant + stateless)
-        if smartthings_mode == 'eco':
-            co2 = max(10, co2 - 15)      # eco lowers emissions
-            energy = max(15, energy - 10)  # eco lowers energy
-            message = f"Eco Mode Active! City: {residential}R {commercial}C {industrial}I"
-        elif smartthings_mode == 'traffic_control':
-            traffic = max(20, traffic - 25)  # traffic control reduces congestion
-            message = f"Traffic Control Active! City: {residential}R {commercial}C {industrial}I"
-        elif smartthings_mode == 'alert':
-            if traffic > 70 or co2 > 60:
-                message = f"ALERT: High Pollution/Traffic! City: {residential}R {commercial}C {industrial}I"
-            else:
-                message = f"City Status Normal: {residential}R {commercial}C {industrial}I"
+        # ---- SmartThings modifiers ----
+        if smart_mode == 'eco':
+            co2 *= 0.80    # -20%
+            energy *= 0.90 # -10%
+            status = "Eco Mode Active"
+        elif smart_mode == 'traffic_control':
+            traffic *= 0.75 # -25%
+            energy *= 1.05  # +5%
+            status = "Traffic Control Active"
+        elif smart_mode == 'alert':
+            status = "ALERT" if (traffic > 70 or co2 > 60) else "Normal"
         else:
-            message = f"City Analyzed: {residential}R {commercial}C {industrial}I"
+            status = "Idle"
+
+        # Clamp & round
+        traffic = round(max(5.0, traffic), 1)
+        co2     = round(max(5.0, co2), 1)
+        energy  = round(max(5.0, energy), 1)
+
+        # Success condition 
+        if co2 <= 60 and traffic <= 40 and energy <= 100:
+            message = "Green Mandate Achieved!"
+        else:
+            message = f"City Analyzed: {r}R {c}C {i}I | {status}"
 
         response = {
-            "traffic": int(traffic),
-            "co2": int(co2),
-            "energy": int(energy),
+            "traffic": int(round(traffic)),
+            "co2": int(round(co2)),
+            "energy": int(round(energy)),
             "message": message
         }
+
         print("Sending response:", response)
         return jsonify(response)
 

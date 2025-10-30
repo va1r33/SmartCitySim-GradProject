@@ -65,7 +65,7 @@ public class CityGridManager : MonoBehaviour
 
     void BuildDefaultCity()
     {
-        // Fill with grass
+        // Fill ground with grass
         for (int x = 0; x < gridWidth; x++)
         {
             for (int y = 0; y < gridHeight; y++)
@@ -114,24 +114,30 @@ public class CityGridManager : MonoBehaviour
 
     void HandleBuildingInput()
     {
-        if (Input.GetMouseButtonDown(0) && selectedBuildingType != null)
+        // Left click to place selectedBuildingType
+        if (Input.GetMouseButtonDown(0))
         {
             Vector3 worldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector3Int cellPos = buildingTilemap.WorldToCell(worldPos);
 
-            if (CanBuildHere(cellPos))
+            if (selectedBuildingType == null)
+            {
+                // null = "erase" mode, left-click does nothing in this design
+            }
+            else if (CanBuildHere(cellPos))
             {
                 buildingTilemap.SetTile(cellPos, selectedBuildingType);
                 UpdateSimulation();
             }
         }
 
+        // Right click to erase
         if (Input.GetMouseButtonDown(1))
         {
             Vector3 worldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector3Int cellPos = buildingTilemap.WorldToCell(worldPos);
 
-            if (CanBuildHere(cellPos) && buildingTilemap.GetTile(cellPos) != null)
+            if (IsInsideGrid(cellPos) && buildingTilemap.GetTile(cellPos) != null)
             {
                 buildingTilemap.SetTile(cellPos, null);
                 UpdateSimulation();
@@ -139,12 +145,15 @@ public class CityGridManager : MonoBehaviour
         }
     }
 
+    bool IsInsideGrid(Vector3Int cellPos)
+    {
+        return !(cellPos.x < 0 || cellPos.x >= gridWidth || cellPos.y < 0 || cellPos.y >= gridHeight);
+    }
+
     bool CanBuildHere(Vector3Int cellPos)
     {
-        if (cellPos.x < 0 || cellPos.x >= gridWidth || cellPos.y < 0 || cellPos.y >= gridHeight)
-            return false;
-        if (buildingTilemap.GetTile(cellPos) == roadTile)
-            return false;
+        if (!IsInsideGrid(cellPos)) return false;
+        if (buildingTilemap.GetTile(cellPos) == roadTile) return false;
         return true;
     }
 
@@ -157,6 +166,7 @@ public class CityGridManager : MonoBehaviour
             case "industrial": selectedBuildingType = industrialTile; break;
             case "park": selectedBuildingType = parkTile; break;
             case "erase": selectedBuildingType = null; break;
+            default: selectedBuildingType = null; break;
         }
         Debug.Log("Selected: " + type);
     }
@@ -179,8 +189,8 @@ public class CityGridManager : MonoBehaviour
         BuildingData[] buildings = new BuildingData[]
         {
             new BuildingData { type = "residential", count = residentialCount },
-            new BuildingData { type = "commercial", count = commercialCount },
-            new BuildingData { type = "industrial", count = industrialCount }
+            new BuildingData { type = "commercial",  count = commercialCount  },
+            new BuildingData { type = "industrial",  count = industrialCount  }
         };
 
         return new CityLayout
@@ -198,9 +208,7 @@ public class CityGridManager : MonoBehaviour
         foreach (var position in bounds.allPositionsWithin)
         {
             if (buildingTilemap.GetTile(position) == tileType)
-            {
                 count++;
-            }
         }
         return count;
     }

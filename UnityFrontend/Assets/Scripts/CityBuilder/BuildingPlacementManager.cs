@@ -57,6 +57,6 @@ public class BuildingPlacementManager : MonoBehaviour
     public void SetBuildMode(string mode)
     {
         currentBuildMode = mode;
-        Debug.Log("Build mode set to: " + mode);
+        Debug.Log($"SetBuildMode CALLED with: {mode}");
     }
 }
